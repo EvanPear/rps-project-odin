@@ -30,7 +30,32 @@ function getComputerChoice() {
            return rock;
        } else if (userInput === "paper") {
            return paper;
-       }else if (userInput === "scissors") {
+       } else if (userInput === "scissors") {
            return scissors;
        }
    }
+
+   function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice) {
+
+        if (
+            (humanChoice === rock && computerChoice === scissors) ||
+            (humanChoice === paper && computerChoice === rock) || 
+            (humanChoice === scissors && computerChoice === paper) 
+         ) {
+         console.log(`Player choice: ${humanChoice} Computer choice: ${computerChoice}`)
+         console.log(`You win ${humanChoice} beats ${computerChoice}!`);
+         humanScore++;
+       } else if (humanChoice === computerChoice) {
+         console.log(`Player choice: ${[humanChoice]} Computer choice: ${computerChoice}`)
+         console.log(`This rounds a tie you both choose ${humanChoice}!`);
+       } else {
+         console.log(`Player choice: ${humanChoice} Computer choice: ${computerChoice}`)
+         console.log(`Computer takes this round ${computerChoice} beats ${humanChoice}!`);
+         computerScore++;
+       }
+    }
+}   
