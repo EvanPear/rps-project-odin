@@ -1,6 +1,6 @@
-const rock = "rock";
-const paper = "paper";
-const scissors = "scissors";
+const rock = "Rock";
+const paper = "Paper";
+const scissors = "Scissors";
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 6) + 1
