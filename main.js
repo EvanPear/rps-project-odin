@@ -47,15 +47,32 @@ function getComputerChoice() {
             (humanChoice === scissors && computerChoice === paper) 
          ) {
          console.log(`Player choice: ${humanChoice} Computer choice: ${computerChoice}`)
-         console.log(`You win ${humanChoice} beats ${computerChoice}!`);
+         console.log(`Round win ${humanChoice} beats ${computerChoice}!`);
          humanScore++;
        } else if (humanChoice === computerChoice) {
          console.log(`Player choice: ${[humanChoice]} Computer choice: ${computerChoice}`)
-         console.log(`This rounds a tie you both choose ${humanChoice}!`);
+         console.log(`Tie! Both picked ${humanChoice}!`);
        } else {
          console.log(`Player choice: ${humanChoice} Computer choice: ${computerChoice}`)
-         console.log(`Computer takes this round ${computerChoice} beats ${humanChoice}!`);
+         console.log(`Round lost ${computerChoice} beats ${humanChoice}!`);
          computerScore++;
        }
     }
+
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    }
+
+    if ( humanScore === computerScore) {
+        console.log(`Its a draw! ${humanScore} - ${computerScore}`);
+    } else if (humanScore > computerScore) {
+        console.log(`Victory! ${humanScore} - ${computerScore}`);
+    } else {
+        console.log(`Defeat! ${computerScore} - ${humanScore}`);
+    }
 }   
+
+playGame()
