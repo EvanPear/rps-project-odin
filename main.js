@@ -132,6 +132,10 @@ function playAgain() {
     let restart = 
     prompt("Would you like to play again (Yes or No)").toLowerCase()
 
+    while (restart !== "no" && restart !== "yes") {
+       restart = prompt("Invalid choice please enter Yes or No").toLowerCase();
+    }
+
     if (restart === "yes") {
         console.clear();
         console.log("New game initiated!");
@@ -139,7 +143,7 @@ function playAgain() {
         return playGame();
     } else {
         console.log("Thanks for playing!");
-        alert("Thanks for playing! If you change you're mind just refresh the page to play again!");
+        alert("Thanks for playing! If you change your mind just refresh the page to play again!");
     }
 }
 
