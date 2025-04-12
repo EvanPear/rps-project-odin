@@ -37,7 +37,7 @@ function getComputerChoice() {
    function playGame() {
     let humanScore = 0;
     let computerScore = 0;
-    let roundCounter = 1;
+    let roundCounter = 0;
 
     function playRound(humanChoice, computerChoice) {
 
@@ -48,17 +48,17 @@ function getComputerChoice() {
          ) {
          console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`) 
          humanScore++;
-         console.log(`Round: ${roundCounter} Win! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
+         console.log(`Round: ${roundCounter} Win! Score: You ${humanScore} - Computer ${computerScore}`);
        } else if (humanChoice === computerChoice) {
          console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`)
-         console.log(`Round: ${roundCounter} Draw! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
+         console.log(`Round: ${roundCounter} Draw! Score: You ${humanScore} - Computer ${computerScore}`);
        } else {
          console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`)
          computerScore++;
-         console.log(`Round: ${roundCounter} Loss! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
+         console.log(`Round: ${roundCounter} Loss! Score: You ${humanScore} - Computer ${computerScore}`);
        }
     }
 
@@ -69,7 +69,6 @@ function getComputerChoice() {
         playRound(humanSelection, computerSelection);
     }
 
-    
     if ( humanScore === computerScore) {
         console.log(`Tie Breaker Round Initiated Score: You ${humanScore} - Computer ${computerScore}`)
         alert("Tie Breaker Round! Best of three - winner takes all!");
@@ -103,7 +102,7 @@ function getComputerChoice() {
             console.log(`Score: You ${humanWins} - Computer ${computerWins}`);
         } else if (humanChoice === computerChoice) {
             console.log("Tie detected - round washed! Go again...");
-            tieBreaker();  
+            continue; /*`continue` instead of calling `tieBreaker()`again stops score from resetting on a tie*/
         } else {
             bonusRounds++;
             computerWins++;
