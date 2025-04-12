@@ -75,8 +75,10 @@ function getComputerChoice() {
         tieBreaker();
     } else if (humanScore > computerScore) {
         console.log(`Victory! ${humanScore} - ${computerScore}`);
+        alert(`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
     } else {
         console.log(`Defeat! ${computerScore} - ${humanScore}`);
+        alert(`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
     }
 
     /* Who likes to end in a tie? tieBreaker() ensures they're always a winner */
