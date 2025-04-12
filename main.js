@@ -121,9 +121,10 @@ function getComputerChoice() {
         alert(`Defeat! Final Score: You ${humanWins + humanScore} - Computer ${computerWins + computerScore}`);
     }
   }
+
+  playAgain();
 }   
 
-playGame()
 
 function playAgain() {
     const no = "no";
@@ -147,4 +148,4 @@ function playAgain() {
     }
 }
 
-playAgain();
+playGame()
