@@ -47,21 +47,18 @@ function getComputerChoice() {
             (humanChoice === paper && computerChoice === rock) || 
             (humanChoice === scissors && computerChoice === paper) 
          ) {
-         console.log(`ROUND: ${roundCounter}`);
-         console.log(`Player choice: ${humanChoice} || Computer choice: ${computerChoice}`)
-         console.log(`Round win ${humanChoice} beats ${computerChoice}!`);
+         console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`) 
          humanScore++;
+         console.log(`Round: ${roundCounter} Win! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
        } else if (humanChoice === computerChoice) {
-         console.log(`ROUND: ${roundCounter}`);
-         console.log(`Player choice: ${[humanChoice]} || Computer choice: ${computerChoice}`)
-         console.log(`Tie! Both picked ${humanChoice}!`);
+         console.log(`Player: ${[humanChoice]} - Computer: ${computerChoice}`)
+         console.log(`Round: ${roundCounter} Draw! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
        } else {
-        console.log(`ROUND: ${roundCounter}`);
-         console.log(`Player choice: ${humanChoice} || Computer choice: ${computerChoice}`)
-         console.log(`Round lost ${computerChoice} beats ${humanChoice}!`);
+         console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`)
          computerScore++;
+         console.log(`Round: ${roundCounter} Loss! Score: You ${humanScore} - Computer ${computerScore}`);
          roundCounter++;
        }
     }
