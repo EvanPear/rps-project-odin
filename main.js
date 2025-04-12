@@ -16,7 +16,7 @@ function getComputerChoice() {
    
     function getHumanChoice() {
        let userInput = 
-        prompt ("What will it be? choose between: Rock, Paper, or Scissors. ").toLowerCase();
+        prompt ("What's your move? Choose: Rock, Paper, or Scissors. ").toLowerCase();
    
    
        while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors") {
