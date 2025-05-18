@@ -14,11 +14,34 @@ function getComputerChoice() {
     }
    }
 
-
+const rockBtn = document.querySelector('#rock-btn');
+const paperBtn = document.querySelector('#paper-btn');
+const scissorBtn = document.querySelector('#scissor-btn');
 const resultLog = document.querySelector('#result-log');
 const roundInfo = document.querySelector('#round-info');
 const scoreBoard = document.querySelector('#score-board');
 const finalResult = document.querySelector('#final-result');
+const resetBtn = document.querySelector('#reset-btn');
+
+function disableButtonChoices(disable) {
+    rockBtn.disabled = disable;
+    paperBtn.disabled = disable;
+    scissorBtn.disabled = disable;
+}
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    roundCounter = 0;
+    resultLog.textContent = '';
+    roundInfo.textContent = '';
+    scoreBoard.textContent = 'You: 0 - Computer: 0';
+    finalResult.textContent = '';
+    disableButtonChoices(false);
+    resetBtn.style.display = 'none';
+}
+
+resetBtn.addEventListener('click', resetGame);
    
 
     let humanScore = 0;
@@ -57,6 +80,8 @@ const finalResult = document.querySelector('#final-result');
        } else {
         finalResult.textContent = (`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
       }
+      disableButtonChoices(true);
+      resetBtn.style.display = 'inline-block';
      }
     }
 
@@ -104,10 +129,6 @@ const finalResult = document.querySelector('#final-result');
     }
   }
 
-
- 
-
-
 function playAgain() {
     const no = "no";
     const yes = "yes";
@@ -130,10 +151,6 @@ function playAgain() {
     }
 }
 
-
-const rockBtn = document.querySelector('#rock-btn');
-const paperBtn = document.querySelector('#paper-btn');
-const scissorBtn = document.querySelector('#scissor-btn');
 
 rockBtn.addEventListener('click', () => {
     playRound(rock, getComputerChoice())
