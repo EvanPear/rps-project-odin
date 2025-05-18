@@ -13,6 +13,12 @@ function getComputerChoice() {
        return paper;
     }
    }
+
+
+const resultLog = document.querySelector('#result-log');
+const roundInfo = document.querySelector('#round-info');
+const scoreBoard = document.querySelector('#score-board');
+const finalResult = document.querySelector('#final-result');
    
 
     let humanScore = 0;
@@ -21,39 +27,41 @@ function getComputerChoice() {
 
     function playRound(humanChoice, computerChoice) {
 
+        const maxRounds = 5;
+
         if (
             (humanChoice === rock && computerChoice === scissors) ||
             (humanChoice === paper && computerChoice === rock) || 
             (humanChoice === scissors && computerChoice === paper) 
          ) {
-         console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`) 
+         resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
          humanScore++;
          roundCounter++;
-         console.log(`Round: ${roundCounter} Win! Score: You ${humanScore} - Computer ${computerScore}`);
+         roundInfo.textContent = (`Round: ${roundCounter} Win!`);
+         scoreBoard.textContent = (`You: ${humanScore} - Computer: ${computerScore}`);
        } else if (humanChoice === computerChoice) {
-         console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`)
+         resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
          roundCounter++;
-         console.log(`Round: ${roundCounter} Draw! Score: You ${humanScore} - Computer ${computerScore}`);
+         roundInfo.textContent = (`Round: ${roundCounter} Draw!`);
+         scoreBoard.textContent = (`You: ${humanScore} - Computer: ${computerScore}`);
        } else {
-         console.log(`Player: ${humanChoice} - Computer: ${computerChoice}`)
+         resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
          computerScore++;
          roundCounter++;
-         console.log(`Round: ${roundCounter} Loss! Score: You ${humanScore} - Computer ${computerScore}`);
+         roundInfo.textContent = (`Round: ${roundCounter} Loss!`);
+         scoreBoard.textContent = (`You: ${humanScore} - Computer: ${computerScore}`);
        }
+       if (maxRounds === roundCounter) {
+         if (humanScore > computerScore) {
+         finalResult.textContent = (`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
+       } else {
+        finalResult.textContent = (`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
+      }
+     }
     }
 
 
-    // if ( humanScore === computerScore) {
-    //     console.log(`Tie Breaker Round Initiated Score: You ${humanScore} - Computer ${computerScore}`)
-    //     alert("Tie Breaker Round! Best of three - winner takes all!");
-    //     // tieBreaker();
-    // } else if (humanScore > computerScore) {
-    //     console.log(`Victory! ${humanScore} - ${computerScore}`);
-    //     alert(`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
-    // } else {
-    //     console.log(`Defeat! ${computerScore} - ${humanScore}`);
-    //     alert(`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
-    // }
+   
 
     /* Who likes to end in a tie? tieBreaker() ensures they're always a winner */
 
