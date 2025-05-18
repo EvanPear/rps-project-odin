@@ -14,27 +14,7 @@ function getComputerChoice() {
     }
    }
    
-    function getHumanChoice() {
-       let userInput = 
-        prompt ("What's your move? Choose: Rock, Paper, or Scissors. ").toLowerCase();
-   
-   
-       while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors") {
-           
-           userInput = prompt
-           ("Invalid choice please choose either Rock, Paper, or Scissors. ").toLowerCase();
-       }
-   
-       if (userInput === "rock") {
-           return rock;
-       } else if (userInput === "paper") {
-           return paper;
-       } else if (userInput === "scissors") {
-           return scissors;
-       }
-   }
 
-   function playGame() {
     let humanScore = 0;
     let computerScore = 0;
     let roundCounter = 0;
@@ -62,24 +42,18 @@ function getComputerChoice() {
        }
     }
 
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
 
-        playRound(humanSelection, computerSelection);
-    }
-
-    if ( humanScore === computerScore) {
-        console.log(`Tie Breaker Round Initiated Score: You ${humanScore} - Computer ${computerScore}`)
-        alert("Tie Breaker Round! Best of three - winner takes all!");
-        tieBreaker();
-    } else if (humanScore > computerScore) {
-        console.log(`Victory! ${humanScore} - ${computerScore}`);
-        alert(`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
-    } else {
-        console.log(`Defeat! ${computerScore} - ${humanScore}`);
-        alert(`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
-    }
+    // if ( humanScore === computerScore) {
+    //     console.log(`Tie Breaker Round Initiated Score: You ${humanScore} - Computer ${computerScore}`)
+    //     alert("Tie Breaker Round! Best of three - winner takes all!");
+    //     // tieBreaker();
+    // } else if (humanScore > computerScore) {
+    //     console.log(`Victory! ${humanScore} - ${computerScore}`);
+    //     alert(`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
+    // } else {
+    //     console.log(`Defeat! ${computerScore} - ${humanScore}`);
+    //     alert(`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
+    // }
 
     /* Who likes to end in a tie? tieBreaker() ensures they're always a winner */
 
@@ -122,8 +96,8 @@ function getComputerChoice() {
     }
   }
 
-  playAgain();
-}   
+
+ 
 
 
 function playAgain() {
@@ -148,4 +122,19 @@ function playAgain() {
     }
 }
 
-playGame()
+
+const rockBtn = document.querySelector('#rock-btn');
+const paperBtn = document.querySelector('#paper-btn');
+const scissorBtn = document.querySelector('#scissor-btn');
+
+rockBtn.addEventListener('click', () => {
+    playRound(rock, getComputerChoice())
+});
+
+paperBtn.addEventListener('click', () => {
+    playRound(paper, getComputerChoice())
+});
+
+scissorBtn.addEventListener('click', () => {
+    playRound(scissors, getComputerChoice())
+});
