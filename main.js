@@ -129,28 +129,6 @@ resetBtn.addEventListener('click', resetGame);
     }
   }
 
-function playAgain() {
-    const no = "no";
-    const yes = "yes";
-
-    let restart = 
-    prompt("Would you like to play again (Yes or No)").toLowerCase()
-
-    while (restart !== "no" && restart !== "yes") {
-       restart = prompt("Invalid choice please enter Yes or No").toLowerCase();
-    }
-
-    if (restart === "yes") {
-        console.clear();
-        console.log("New game initiated!");
-        alert("Fresh game starting! Are you ready to rock? ;)")
-        return playGame();
-    } else {
-        console.log("Thanks for playing!");
-        alert("Thanks for playing! If you change your mind just refresh the page to play again!");
-    }
-}
-
 
 rockBtn.addEventListener('click', () => {
     playRound(rock, getComputerChoice())
