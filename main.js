@@ -33,6 +33,7 @@ function resetGame() {
     humanScore = 0;
     computerScore = 0;
     roundCounter = 0;
+    isTieBreaker = false;
     resultLog.textContent = '';
     roundInfo.textContent = '';
     scoreBoard.textContent = 'You: 0 - Computer: 0';
@@ -48,6 +49,9 @@ resetBtn.addEventListener('click', resetGame);
     let computerScore = 0;
     let roundCounter = 0;
     const maxRounds = 5;
+    let isTieBreaker = false;
+    const winMsg = 'Victory! I never doubted you!';
+    const lossMsg = ' Defeat! Better luck next time';
     
     function playRound(humanChoice, computerChoice) {
 
@@ -76,12 +80,19 @@ resetBtn.addEventListener('click', resetGame);
        
        if (maxRounds === roundCounter) {
          if (humanScore > computerScore) {
-            finalResult.textContent = (`Victory congratulations! Final score: You ${humanScore} - Computer ${computerScore}`);
-       } else {
-            finalResult.textContent = (`Defeat You lost this one! Final score: You ${humanScore} - Computer ${computerScore}`);
-       }
+            finalResult.textContent = winMsg;
             disableButtonChoices(true);
             resetBtn.style.display = 'inline-block';
+       } else if (humanScore === computerScore) {
+            finalResult.textContent = ("It's a tie! Sudden death initiated... next point wins!");
+            isTieBreaker = true;
+            roundInfo.textContent = '';
+            resultLog.textContent = '';
+       } else {
+            finalResult.textContent = lossMsg;
+            disableButtonChoices(true);
+            resetBtn.style.display = 'inline-block';
+       }
     }
 }
 
@@ -90,19 +101,56 @@ resetBtn.addEventListener('click', resetGame);
 
     /* Who likes to end in a tie? tieBreaker() ensures they're always a winner */
 
-//     function tieBreaker() {
-    
-//   }
+   function tieBreaker(humanChoice, computerChoice) {
+        roundInfo.textContent = 'Sudden death round!';
 
+        if (
+            (humanChoice === rock && computerChoice === scissors) ||
+            (humanChoice === paper && computerChoice === rock) || 
+            (humanChoice === scissors && computerChoice === paper) 
+         ) {
+            resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
+            humanScore++;
+            scoreBoard.textContent = (`You: ${humanScore} - Computer: ${computerScore}`);
+            finalResult.textContent = winMsg;
+            roundInfo.textContent = '';
+            disableButtonChoices(true);
+            resetBtn.style.display = 'inline-block';
+       } else if (humanChoice === computerChoice) {
+            resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
+            finalResult.textContent = ("Neither side yields... sudden death continues");
+       } else {
+            resultLog.textContent = (`Player: ${humanChoice} - Computer: ${computerChoice}`);
+            computerScore++;
+            scoreBoard.textContent = (`You: ${humanScore} - Computer: ${computerScore}`);
+            finalResult.textContent = lossMsg;
+            roundInfo.textContent = '';
+            disableButtonChoices(true);
+            resetBtn.style.display = 'inline-block';
+     }
+
+}
 
 rockBtn.addEventListener('click', () => {
-    playRound(rock, getComputerChoice())
+   if (isTieBreaker) {
+    tieBreaker(rock, getComputerChoice());
+   } else {
+    playRound(rock, getComputerChoice());
+   }
 });
 
 paperBtn.addEventListener('click', () => {
-    playRound(paper, getComputerChoice())
+  if(isTieBreaker) {
+    tieBreaker(paper, getComputerChoice());
+  } else {
+    playRound(paper, getComputerChoice());
+  }  
 });
 
 scissorBtn.addEventListener('click', () => {
-    playRound(scissors, getComputerChoice())
+    if (isTieBreaker) {
+        tieBreaker(scissors, getComputerChoice());
+    } else {
+        playRound(scissors, getComputerChoice());
+    }
 });
